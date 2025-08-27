@@ -1,6 +1,7 @@
 package br.com.senacsp.tads.stads4ma.libray.domain.repository;
 
 import br.com.senacsp.tads.stads4ma.libray.domain.User;
+import com.github.javafaker.Faker;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,6 +15,16 @@ public class NonPersistentUserRepository implements UserRepository<User, UUID>{
 
     public NonPersistentUserRepository(){
         Faker faker = new Faker();
+
+        for(int i = 0; i < 10; i++){
+            User user = new User(
+                    UUID.randomUUID(),
+                    faker.name().fullName(),
+                    faker.internet().emailAddress(),
+                    faker.internet().password()
+            );
+            this.internalData.add(user);
+        }
     }
 
 }
