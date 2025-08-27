@@ -5,6 +5,7 @@ import com.github.javafaker.Faker;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,4 +28,8 @@ public class NonPersistentUserRepository implements UserRepository<User, UUID>{
         }
     }
 
+    @Override
+    public List<User> findAll() {
+        return this.internalData.stream().toList();
+    }
 }
