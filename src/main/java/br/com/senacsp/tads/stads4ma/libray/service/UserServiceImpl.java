@@ -11,11 +11,14 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 @NoArgsConstructor(force = true)
 public class UserServiceImpl implements UserService{
 
     private final NonPersistentUserRepository userRepository;
+
+    public UserServiceImpl(NonPersistentUserRepository userRepository){
+        this.userRepository = userRepository;
+    }
 
     @Override
     public List<User> findAll() {
@@ -27,6 +30,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public User findById(UUID id){
         return this.userRepository.findById(id);
+    }
+
+    @Override
+    public void deleteById(UUID id){
+        this.userRepository.deleteById(id);
     }
 
 }

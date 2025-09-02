@@ -12,12 +12,24 @@ import java.util.UUID;
 
 
 @NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 public class User {
-    private @Setter @Getter UUID id;
-    private @Setter @Getter String name;
-    private @Setter @Getter String email;
-    private @Setter @Getter String password;
+    private UUID id;
+    private String name;
+    private String email;
+    private String password;
+
+    public User(UUID id, String name, String email, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    public UUID getId() {
+        return id;
+    }
 
     @Override
     public boolean equals(Object o) {
