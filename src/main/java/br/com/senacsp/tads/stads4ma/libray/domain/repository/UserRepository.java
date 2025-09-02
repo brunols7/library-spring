@@ -8,4 +8,5 @@ import java.util.UUID;
 
 public interface UserRepository<T, ID> {
     List<User> findAll();
+    User findById(UUID id);
 }

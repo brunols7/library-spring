@@ -12,24 +12,34 @@ import java.util.UUID;
 @Component
 public class NonPersistentUserRepository implements UserRepository<User, UUID>{
 
-    private List<User> internalData = new ArrayList<>();
+    private final List<User> interalData = new ArrayList<>();
 
     public NonPersistentUserRepository(){
         Faker faker = new Faker();
-
-        for(int i = 0; i < 10; i++){
+        for( int i = 0; i < 100; i++ ){
             User user = new User(
                     UUID.randomUUID(),
                     faker.name().fullName(),
                     faker.internet().emailAddress(),
                     faker.internet().password()
             );
-            this.internalData.add(user);
+            this.interalData.add(user);
         }
     }
 
     @Override
     public List<User> findAll() {
-        return this.internalData.stream().toList();
+        return this.interalData.stream().toList();
+    }
+
+    @Override
+    public User findById(UUID id){
+        for(User user : interalData){
+            if(user.getId() ==  id){
+                return user;
+            }
+        }
+
+        return null;
     }
 }
