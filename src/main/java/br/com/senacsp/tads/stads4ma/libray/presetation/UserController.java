@@ -4,6 +4,7 @@ import br.com.senacsp.tads.stads4ma.libray.domain.User;
 import br.com.senacsp.tads.stads4ma.libray.service.UserService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,6 +44,11 @@ public class UserController {
         }
         userService.deleteById(id);
         return ResponseEntity.ok("Usuário deletado com sucesso!");
+    }
+
+    @PostMapping
+    public ResponseEntity<User> createUser(@RequestBody User user){
+        return new ResponseEntity<User>(this.userService.create(user), HttpStatus.CREATED);
     }
 
 

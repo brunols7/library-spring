@@ -9,6 +9,6 @@ import java.util.UUID;
 public interface UserRepository<T, ID> {
     List<User> findAll();
     User findById(UUID id);
-
+    User create(User user);
     void deleteById(UUID id);
 }

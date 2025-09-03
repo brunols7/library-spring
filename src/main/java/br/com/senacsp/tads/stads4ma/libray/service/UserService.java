@@ -15,4 +15,5 @@ public interface UserService {
     List<User> findAll();
     User findById(UUID id);
     void deleteById(UUID id);
+    User create(User user);
 }

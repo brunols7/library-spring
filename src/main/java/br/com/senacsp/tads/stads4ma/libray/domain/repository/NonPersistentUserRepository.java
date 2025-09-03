@@ -51,4 +51,10 @@ public class NonPersistentUserRepository implements UserRepository<User, UUID>{
             }
         }
     }
+
+    @Override
+    public User create(User user){
+        interalData.add(user);
+        return user;
+    }
 }
